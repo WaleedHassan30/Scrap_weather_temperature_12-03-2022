@@ -1,9 +1,9 @@
 city,Temperature,humidity,Air_Pressure,wind_speed,Date
-Cairo,max = 21°C | min = 8°C,65%,1021.3mb,30 Km/h,19 March 2022
-Cairo,max = 19°C | min = 8°C,59%,1017.2mb,31 Km/h,20 March 2022
-Cairo,max = 19°C | min = 7°C,63%,1017.1mb,16 Km/h,21 March 2022
-Cairo,max = 16°C | min = 8°C,76%,1018.2mb,15 Km/h,22 March 2022
-Cairo,max = 16°C | min = 8°C,60%,1019.9mb,16 Km/h,23 March 2022
-Cairo,max = 15°C | min = 10°C,65%,1022.3mb,12 Km/h,24 March 2022
-Cairo,max = 18°C | min = 9°C,68%,1025.0mb,13 Km/h,25 March 2022
-Cairo,max = 21°C | min = 10°C,64%,1027.6mb,17 Km/h,26 March 2022
+Cairo,max = 21°C | min = 8°C,65%,,30 Km/h,19 March 2022
+Cairo,max = 19°C | min = 8°C,59%,,31 Km/h,20 March 2022
+Cairo,max = 19°C | min = 7°C,63%,,16 Km/h,21 March 2022
+Cairo,max = 16°C | min = 8°C,76%,,15 Km/h,22 March 2022
+Cairo,max = 16°C | min = 8°C,60%,,16 Km/h,23 March 2022
+Cairo,max = 15°C | min = 10°C,65%,,12 Km/h,24 March 2022
+Cairo,max = 18°C | min = 9°C,68%,,13 Km/h,25 March 2022
+Cairo,max = 21°C | min = 10°C,64%,,17 Km/h,26 March 2022

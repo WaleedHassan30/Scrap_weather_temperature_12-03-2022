@@ -8,7 +8,7 @@ global weather_data
 weather_data = {}
 global All_Data_Dict
 All_Data_Dict = []
-
+log_file = "weather_for_7_Dayes.csv"
 def get_data_for_days(data_url="https://eg.freemeteo.com/weather/cairo/daily-forecast/day1/?gid=360630&language=english&country=egypt"):
         dayes = 7
         dayes_url_dict = {}
@@ -21,26 +21,18 @@ def get_data_for_days(data_url="https://eg.freemeteo.com/weather/cairo/daily-for
                 response1 = requests.get(url_split[0]+temp+url_split[2])
                 url = url_split[0]+temp+url_split[2]
                 dayes_url_dict[temp]= [url,response1]
-                Get_all_data(url)
-                
-
-                
+                Get_all_data(url)    
             elif day == 1:
                 temp = "tomorrow"
                 response1 = requests.get(url_split[0]+temp+url_split[2])
                 url = url_split[0]+temp+url_split[2]
                 dayes_url_dict[temp]= [url,response1]
-                Get_all_data(url)
-                
-                
+                Get_all_data(url)              
             else:
                 response1 = requests.get(url_split[0]+temp+url_split[2])
                 url = url_split[0]+temp+url_split[2]
                 dayes_url_dict[temp]= [url,response1]
                 Get_all_data(url)
-                
-       
-
 def Get_max_temp(url):
         response1 = requests.get(url)
         soup = bs(response1.text, 'html.parser')
@@ -50,7 +42,6 @@ def Get_max_temp(url):
         temperature_list.append(int(soup.findAll('span', attrs={'class': 'temp'})[2].get_text().split("°C")[0]))
         temperature_list.append(int(soup.findAll('span', attrs={'class': 'temp'})[3].get_text().split("°C")[0]))
         return max(temperature_list)
-
 def Get_min_temp(url):
         response1 = requests.get(url)
         soup = bs(response1.text, 'html.parser')
@@ -59,12 +50,9 @@ def Get_min_temp(url):
         temperature_list.append(int(soup.findAll('span', attrs={'class': 'temp'})[1].get_text().split("°C")[0]))
         temperature_list.append(int(soup.findAll('span', attrs={'class': 'temp'})[2].get_text().split("°C")[0]))
         temperature_list.append(int(soup.findAll('span', attrs={'class': 'temp'})[3].get_text().split("°C")[0]))
-        return min(temperature_list)
-        
+        return min(temperature_list)    
 def Get_Temperature(url):
         return f"max = {Get_max_temp(url)}°C | min = {Get_min_temp(url)}°C"
-
-
 def Get_all_data(url):
         response1 = ""
         soup = ""
@@ -87,8 +75,6 @@ def Get_all_data(url):
                 air_pressure = soup.findAll('span', attrs={'class': 'info'})[3].findAll("strong")[3].get_text()
         elif len(date_list) < 8:
                 air_pressure = soup.findAll('span', attrs={'class': 'info'})[3].findAll("strong")[4].get_text()
-
-        
         ################### Add Data To Dict #####################
         weather_data["city"] = city
         weather_data["Temperature"] = temperature
@@ -100,8 +86,6 @@ def Get_all_data(url):
         #date_list.append(date_weather)
         save_data()
         print(weather_data)
-
-
 def save_data():
             if Path(log_file).is_file(): 
                 log_save()
@@ -130,4 +114,13 @@ def log_save():
 def Show_Table():
         table = pandas.read_csv(log_file,encoding= 'unicode_escape')
         print(table)
+        ##################################################################
+def Main():
+        print("                                     Scrap_weather_temperature_Script                                        ")
+        print("ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ")
+        get_data_for_days()
+        print(f"                                          Show File Content                                                 ")
+        print("ــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ")        Show_Table()
 
+
+        ########################### END ###############################
